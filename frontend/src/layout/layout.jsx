@@ -1,5 +1,6 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../components/Layout_Coms/Header";
+import Footer from "../components/Layout_Coms/Footer";
+
 
 function Layout({ children }) {
   return (
