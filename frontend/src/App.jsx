@@ -13,7 +13,7 @@ import RegisterPage from "./pages/RegisterPage.jsx";
 function App() {
 
   return (
-    <>
+    <div className="bg-cover bg-center h-screen" style={{ backgroundImage: "url('/mrt-maschin.jpg')" }}>
    
   
     <BrowserRouter>
@@ -30,7 +30,7 @@ function App() {
 
 
 <h1>Hallo World</h1>
-    </>
+    </div>
   )
 }
 

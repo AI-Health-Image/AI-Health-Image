@@ -3,9 +3,9 @@ import Layout from "../layout/layout";
 function HomePage() {
   return (
     <Layout>
-      <div>
+      <div className="flex flex-col justify-between items-center p-2 border rounded m-2 bg-slate-400">
         <iframe
-          className="w-full min-h-screen"
+          className="w-full min-h-80"
           src="https://www.youtube.com/embed/aj1Xj-WN8uo?si=UHPSDRxEEQSvAmNE"
           title="YouTube video player"
           frameBorder="0"
