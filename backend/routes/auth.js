@@ -12,19 +12,24 @@ const prisma = new PrismaClient();
 
 // Login Route
 router.post("/login", async (request, response) => {
-    const { username, password } = request.body;
-    console.log(`Login attempt with username: ${username} and password: ${password}`);
+    const { email, password } = request.body;
+    console.log(`Login attempt with email: ${email} and password: ${password}`);
     // Datenbankabfrage
     const users = await prisma.users.findMany();
-    //console.log('users: ', users);
+    console.log('users: ', users);
 
     // Validiert ob ein User existiert
-    const existingUser = users.find((user) => user.username === username);
+    const existingUser = users.find((user) => user.email === email);
+    console.log('existingUser: ', existingUser);
+    if (!existingUser) {
+        response.status(401).send({ message: "User not found" });
+        return;
+    };
     // Validiert ob das Passwort übereinstimmt
     const checkedPassword = await bcrypt.compare(password, existingUser.password);
     
     // Validiert ob ein Error besteht
-    const errorChecker = validator.validatorLogin(users, username, password, checkedPassword);
+    const errorChecker = validator.validatorLogin(users, email, password, checkedPassword);
     //console.log(errorChecker);
 
     // Error Response
@@ -34,24 +39,24 @@ router.post("/login", async (request, response) => {
     };
 
     // Response
-    if (users.find((user) => user.username === username && checkedPassword === true)) {
+    if (users.find((user) => user.email === email && checkedPassword === true)) {
         // JWT Token wird erstellt
-        const token = jwt.sign({ username }, SECRET);
-        response.send({ message: "Login successful! JWT Token: ", token });
+        const token = jwt.sign({ email }, SECRET);
+        response.send({ message: "Login successful!", token });
         return;
     };
 });
 
 // Register Route
 router.post("/register", async (request, response) => {
-    const { username, password, repeatPassword } = request.body;
-    console.log(`Register attempt with username: ${username} and password: ${password} and repeatPassword: ${repeatPassword}`);
+    const { email, password, repeatPassword } = request.body;
+    console.log(`Register attempt with email: ${email} and password: ${password} and repeatPassword: ${repeatPassword}`);
     // Datenbankabfrage
     const users = await prisma.users.findMany();
     console.log(users);
 
     // Validiert ob ein Error besteht
-    const errorChecker = validator.validatorRegister(users, username, password, repeatPassword);
+    const errorChecker = validator.validatorRegister(users, email, password, repeatPassword);
     //console.log(errorChecker);
 
     // Error Response
@@ -67,7 +72,7 @@ router.post("/register", async (request, response) => {
         const hashPassword = bcrypt.hashSync(password, 10);
         await prisma.users.create({
             data: {
-                username: username,
+                email: email,
                 password: hashPassword,
             }
         });

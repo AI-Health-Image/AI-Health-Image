@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="w-full bg-gray-200 p-4">
+    <footer className="w-full bg-gray-200 p-4 mt-auto">
       <div>
         <ul className="flex justify-center space-x-4">      
           <li>
