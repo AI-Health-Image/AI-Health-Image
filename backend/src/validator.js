@@ -3,18 +3,18 @@ const prisma = require("@prisma/client");
 
 function validatorRegister(
     users,
-    username,
+    email,
     password,
     repeatPassword
 ) {
     // Error Handling
     let missingField = [];
     !users ? missingField.push("No Users found") : null;
-    !username ? missingField.push("Missing Username") : null;
+    !email ? missingField.push("Missing Email") : null;
     !password ? missingField.push("Missing Password") : null;
     !repeatPassword ? missingField.push("Missing Repeat Password") : null;
     (password !== repeatPassword) ? missingField.push("Passwords do not match") : null;
-    users.find((user) => user.username === username) ? missingField.push("Username already exists") : null;
+    users.find((user) => user.email === email) ? missingField.push("Email already exists") : null;
 
     return {
         error: missingField.length > 0,
@@ -24,16 +24,16 @@ function validatorRegister(
 
 function validatorLogin(
     users,
-    username,
+    email,
     password,
     checkedPassword
 ) {
     // Error Handling
     let missingField = [];
     !users ? missingField.push("No Users found") : null;
-    !username ? missingField.push("Missing Username") : null;
+    !email ? missingField.push("Missing Email") : null;
     !password ? missingField.push("Missing Password") : null;
-    !users.find((user) => user.username === username) ? missingField.push("Username not found") : null;
+    !users.find((user) => user.email === email) ? missingField.push("Email not found") : null;
     !checkedPassword ? missingField.push("Password incorrect") : null;
 
     return {

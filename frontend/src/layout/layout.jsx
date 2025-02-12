@@ -4,10 +4,10 @@ import Footer from "../components/Layout_Coms/Footer";
 
 function Layout({ children }) {
   return (
-    <div className="container mx-auto mt-2 h-screen">
-      <Header />
+    <div className="flex flex-col h-screen justify-between gap-2">
+      <Header className="h-10" />
       {children}
-      <Footer />
+      <Footer className="h-10" />
     </div>
   );
 }
