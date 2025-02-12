@@ -41,7 +41,8 @@ router.post("/login", async (request, response) => {
     // Response
     if (users.find((user) => user.email === email && checkedPassword === true)) {
         // JWT Token wird erstellt
-        const token = jwt.sign({ email }, SECRET);
+        const role = users.find((user) => user.email === email).role;
+        const token = jwt.sign({ email, role }, SECRET);
         response.send({ message: "Login successful!", token });
         return;
     };
@@ -74,6 +75,7 @@ router.post("/register", async (request, response) => {
             data: {
                 email: email,
                 password: hashPassword,
+                role: 'patient'
             }
         });
         // Response vom Server (Registrierung erfolgreich)

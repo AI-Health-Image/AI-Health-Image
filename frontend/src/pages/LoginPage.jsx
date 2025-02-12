@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Layout from "../layout/Layout";
+import useStore from "../components/jwtStore";
 
 function LoginPage() {
   const [successMessage, setSuccessMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
+  const { setJwt } = useStore();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -32,9 +34,9 @@ function LoginPage() {
     setSuccessMessage(data.message);
 
     //JWT Token wird hier weiterverarbeitet
-    console.log("Token:", data.token);
+    //console.log("Token:", data.token);
     // Speichert den Token im LocalStorage
-    localStorage.setItem("token", data.token);
+    setJwt(data.token);
 
     // Weiterleitung auf die Startseite
     navigate("/");
