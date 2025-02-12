@@ -24,6 +24,9 @@ app.get("/", (request, response) => {
 // Auth Route
 app.use("/auth", authRouter);
 
+// Upload Route
+app.use("/upload", uploadRouter);
+
 // Server wird gestartet auf die Variable Port
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
