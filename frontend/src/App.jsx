@@ -10,7 +10,7 @@ import RegisterPage from "./pages/RegisterPage.jsx";
 
 function App() {
   return (
-    <>
+    <div className="bg-cover bg-center h-screen" style={{ backgroundImage: "url('/mrt-maschin.jpg')" }}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landingpage />} />
@@ -18,13 +18,12 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/imprint" element={<ImprintPage />} />
+          <Route path="/imprint" element={<ImprintPage />}/>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
         </Routes>
       </BrowserRouter>
-    </>
-  );
+    </div>
+  )
 }
 
 export default App;
