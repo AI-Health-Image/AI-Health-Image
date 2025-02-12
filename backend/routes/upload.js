@@ -5,6 +5,8 @@ const router = require("./auth");
 const app = express();
 const port = 3000;
 
+app.use(cors()); //Aktivierung von CORS für allle Anfragen
+
 //Konfiguration für den Datei-Upload
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
