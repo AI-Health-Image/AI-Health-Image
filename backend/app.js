@@ -2,6 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const authRouter = require("./routes/auth");
+const uploadRouter = require("./routes/upload");
 
 // Initialisierung von Express
 const app = express();

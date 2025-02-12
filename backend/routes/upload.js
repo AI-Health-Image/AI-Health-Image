@@ -1,27 +1,28 @@
 //Upload.js
 const express = require("express");
+const router = express.Router();
 const multer = require("multer"); // Middleware für Ddatei-Upload
-const router = require("./auth");
-const app = express();
-const port = 3000;
 
-app.use(cors()); //Aktivierung von CORS für allle Anfragen
 
 //Konfiguration für den Datei-Upload
-const storage = multer.diskStorage({
+const imageStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/"); //Speicherort für hochgeladene Bilder
+    //console.log("destination", file);
+    cb(null, "./data/upload"); //Speicherort für hochgeladene Bilder
   },
 
   filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname); //Eindeutiger Dateiname
+    //console.log("filename", file);
+    cb(null, `image-${Date.now()}.${file.originalname}`);
   },
 });
 
-const upload = multer({ storage: storage });
-
 //API Endpunkt für den Bild-Upload
-app.post("/api/upload", upload.single("image"), (req, res) => {
+
+const upload = multer({ storage: imageStorage });
+
+router.post("/upload", upload.single("image"), (req, res) => {
+  //console.log("eq.file", req.file);
   if (!req.file) {
     return res.status(400).json({ message: "Kein Bild hochgeladen" });
   }
@@ -31,9 +32,7 @@ app.post("/api/upload", upload.single("image"), (req, res) => {
 
   res.json({ message: "Bild erfolgreich hochgeladen" });
 
-  app.listen(port, () => {
-    console.log(`Server läuft auf http://localhost:${port}`);
-  });
+
 });
 
 module.exports = router;
