@@ -2,6 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const authRouter = require("./routes/auth");
+const uploadRouter = require("./routes/upload");
 
 // Initialisierung von Express
 const app = express();
@@ -23,6 +24,9 @@ app.get("/", (request, response) => {
 
 // Auth Route
 app.use("/auth", authRouter);
+
+// Upload Route
+app.use("/upload", uploadRouter);
 
 // Server wird gestartet auf die Variable Port
 app.listen(port, () => {
