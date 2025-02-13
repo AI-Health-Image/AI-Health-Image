@@ -88,4 +88,42 @@ router.post("/register", async (request, response) => {
     };
 });
 
+// Verify JWT Token
+router.post("/verify", async (req, res) => {
+    const token = req.body.token || req.headers.authorization.split(' ')[1];
+    console.log(`Verify attempt with token: ${token}`);
+
+    if (!token) {
+        res.status(401).send({ verified: false, message: "Token is missing" });
+        return;
+    }
+
+    jwt.verify(token, SECRET, (err, decoded) => {
+        if (err) {
+            console.error('JWT is invalid', err);
+            console.error('Failed to decode JWT:', err.message);
+            console.error('Token:', token);
+            res.status(401).send({ message: "Token is invalid", verified: false });
+            return;
+        }
+
+        // Token is Valid
+        res.json({ message: "Token is valid", decoded, verified: true });
+    });
+
+    /*
+    try {
+        const decoded = jwt.verify(token, SECRET);
+        const verified = true;
+        res.send({ message: "Token is valid", decoded, verified });
+    } catch (error) {
+        console.error('JWT is invalid', error);
+        console.error('Failed to decode JWT:', error.message);
+        console.error('Token:', token);
+        const verified = false;
+        res.status(401).send({ message: "Token is invalid", verified });
+    }
+    */
+});
+
 module.exports = router;
