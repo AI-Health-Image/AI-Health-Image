@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage.jsx";
 import PrivacyPage from "./pages/PrivacyPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
 import UploadbuttonPage from "./pages/UploadbuttonPage.jsx";
+import Analysis-Page from "./pages/Analysis-Page.jsx";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/imprint" element={<ImprintPage />}/>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/upload" element={<UploadbuttonPage />} />
+          <Route path="/analysis" element={<Analysis-Page />} />
         </Routes>
       </BrowserRouter>
     </div>
