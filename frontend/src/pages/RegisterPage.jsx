@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Layout from "../layout/Layout";
 
 function RegisterPage() {
@@ -7,6 +7,7 @@ function RegisterPage() {
   const [passwordError, setPasswordError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  const navigate = useNavigate();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -47,6 +48,7 @@ function RegisterPage() {
 
     setEmailError(null);
     setPasswordError(null);
+    navigate("/");
   }
   return (
     <Layout>

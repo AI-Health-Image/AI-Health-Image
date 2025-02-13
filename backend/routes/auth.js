@@ -16,11 +16,11 @@ router.post("/login", async (request, response) => {
     console.log(`Login attempt with email: ${email} and password: ${password}`);
     // Datenbankabfrage
     const users = await prisma.users.findMany();
-    console.log('users: ', users);
+    //console.log('users: ', users);
 
     // Validiert ob ein User existiert
     const existingUser = users.find((user) => user.email === email);
-    console.log('existingUser: ', existingUser);
+    //console.log('existingUser: ', existingUser);
     if (!existingUser) {
         response.status(401).send({ message: "User not found" });
         return;
@@ -54,7 +54,7 @@ router.post("/register", async (request, response) => {
     console.log(`Register attempt with email: ${email} and password: ${password} and repeatPassword: ${repeatPassword}`);
     // Datenbankabfrage
     const users = await prisma.users.findMany();
-    console.log(users);
+    //console.log(users);
 
     // Validiert ob ein Error besteht
     const errorChecker = validator.validatorRegister(users, email, password, repeatPassword);
