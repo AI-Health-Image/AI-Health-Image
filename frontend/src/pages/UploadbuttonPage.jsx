@@ -84,9 +84,9 @@ function UploadbuttonPage() {
     return (
       <Layout>
         <div className="container mx-auto max-w-md p-4 bg-gray-100 mt-4 rounded-lg">
-          <h1>MRT-Bildanalyse</h1>
+          <h1 className="text -2xl font-bold mb-4">MRT-Bildanalyse</h1>
           <input type="file" onChange={handleFileChange} />
-          <button onClick={handleSubmit}>hochladen</button>
+          <button onClick={handleSubmit} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Hochladen</button>
           {selectedFile && (
             <img
               src={URL.createObjectURL(selectedFile)}
