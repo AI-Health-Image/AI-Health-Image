@@ -1,5 +1,5 @@
 // src /App.js
-inmport React, { useState } from "react";
+import React, { useState } from "react";
 
 function App() {
     const [selectedFile, setSelectedFile] = useState(null);

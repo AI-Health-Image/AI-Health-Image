@@ -2,6 +2,7 @@
 
 import React , {useState, useEffect} from 'react';
 import { useSearchParams } from 'react-router-dom';
+import CornerstoneViewport from 'react-cornerstone-viewport';
 
 //Import einer Bibliothek für die Bildanzeige (z.B. CornerstoneViewer)
 
@@ -9,6 +10,7 @@ function AnalysisPage() {
     const [searchParams] = useSearchParams();
     const filename = searchParams.get('filename');
     const  [imageUrl, setImageUrl] = useState(null);
+
 
     useEffect(() => {
         if (filename) {
