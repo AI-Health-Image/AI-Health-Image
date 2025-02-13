@@ -42,7 +42,8 @@ router.post("/login", async (request, response) => {
     if (users.find((user) => user.email === email && checkedPassword === true)) {
         // JWT Token wird erstellt
         const role = users.find((user) => user.email === email).role;
-        const token = jwt.sign({ email, role }, SECRET);
+        const id = users.find((user) => user.email === email).id;
+        const token = jwt.sign({ id, email, role }, SECRET);
         response.send({ message: "Login successful!", token });
         return;
     };

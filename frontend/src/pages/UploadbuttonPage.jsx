@@ -35,8 +35,11 @@ function UploadbuttonPage() {
     formData.append("image", selectedFile);
 
     try {
-      const response = await fetch("/api/upload", {
+      const response = await fetch("http://localhost:3000/upload/upload", {
         method: "POST",
+        headers: {
+          Authorization: `Bearer ${jwt}`,   // Der JWT Token wird als Bearer Token übergeben
+        },
         body: formData,
       });
 

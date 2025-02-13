@@ -23,7 +23,7 @@ model Users {
 
 model UserUploads {
   id              Int    @id @default(autoincrement())
-  email           Users  @relation(fields: [emailName], references: [email])
-  emailName       String
+  email           Users  @relation(fields: [userId], references: [id])
+  userId          Int
   uploadedFilname String
 }
