@@ -8,10 +8,11 @@ import LoginPage from "./pages/LoginPage.jsx";
 import PrivacyPage from "./pages/PrivacyPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
 import UploadbuttonPage from "./pages/UploadbuttonPage.jsx";
+import UserSettingsPage from "./pages/UserSettingsPage.jsx";
 
 function App() {
   return (
-    <div className="bg-cover bg-center h-screen" style={{ backgroundImage: "url('/mrt-maschin.jpg')" }}>
+    <div>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landingpage />} />
@@ -22,6 +23,7 @@ function App() {
           <Route path="/imprint" element={<ImprintPage />}/>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/upload" element={<UploadbuttonPage />} />
+          <Route path="/settings" element={<UserSettingsPage />} />
         </Routes>
       </BrowserRouter>
     </div>
