@@ -9,6 +9,7 @@ import PrivacyPage from "./pages/PrivacyPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
 import UploadbuttonPage from "./pages/UploadbuttonPage.jsx";
 import UserSettingsPage from "./pages/UserSettingsPage.jsx";
+import AnalysisPage from "./pages/Analysis-Page.jsx";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/upload" element={<UploadbuttonPage />} />
           <Route path="/settings" element={<UserSettingsPage />} />
+          <Route path="/analysis" element={<AnalysisPage />} />
         </Routes>
       </BrowserRouter>
     </div>
