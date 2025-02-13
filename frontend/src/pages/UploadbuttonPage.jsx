@@ -36,8 +36,9 @@ const handleSubmit = async () => {
 
 return (
     <div>
-        <h1>MRT-Bildanalyse</h1>
-        <input type="file" onChange={handleFileChange} />
+        <h1 className="text-3xl font-bold mb-4">MRT-Bildanalyse</h1>
+        <input type="file" onChange={handleFileChange}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" />
         <button onClick={handleSubmit}>hochladen</button>
     </div>
 );
