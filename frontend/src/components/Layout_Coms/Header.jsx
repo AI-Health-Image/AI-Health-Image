@@ -28,10 +28,13 @@ function Header() {
         <div className="font-bold text-xl">AI-Health-Image Analyzer</div>
         <nav className="flex gap-2">
             {/* Hier Navigationselemente einfügen */}
-            <Link to="/" className="hover:text-gray-300">Home</Link>
-            {(role==='patient' /*|| role==='doctor'*/) && <Link to="/upload" className="hover:text-gray-300">Upload</Link>}
+          <Link to="/" className="hover:text-gray-300">Home</Link>
+          
+          {(role === 'patient' /*|| role==='doctor'*/) && <Link to="/upload" className="hover:text-gray-300">Upload</Link>}
+          
             <Link to="/about" className="hover:text-gray-300">About</Link>
-            <Link to="/contact" className="hover:text-gray-300">Contact</Link>
+          <Link to="/contact" className="hover:text-gray-300">Contact</Link>
+          
           {name ? (
             <div className="relative">
               <button onClick={toggleDropdown} className="hover:text-gray-300">{name}</button>
@@ -44,7 +47,8 @@ function Header() {
             </div>
             ) : (
               <Link to="/login" className="hover:text-gray-300">Login</Link>
-            )}
+          )}
+          
         </nav>
         </header>
     );

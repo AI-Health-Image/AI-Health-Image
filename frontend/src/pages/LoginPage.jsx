@@ -7,7 +7,7 @@ function LoginPage() {
   const [successMessage, setSuccessMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
-  const { setJwt, getJwt } = useStore();
+  const { setJwt, /*getJwt*/ } = useStore();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -37,7 +37,7 @@ function LoginPage() {
     //console.log("Token:", data.token);
     // Speichert den Token im LocalStorage
     setJwt(data.token);
-    console.log("JWT:", getJwt());
+    //console.log("JWT:", getJwt());
 
     // Weiterleitung auf die Startseite
     navigate("/");
