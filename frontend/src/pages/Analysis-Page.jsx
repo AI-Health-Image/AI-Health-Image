@@ -2,7 +2,7 @@
 
 import React , {useState, useEffect} from 'react';
 import { useSearchParams } from 'react-router-dom';
-import CornerstoneViewport from 'react-cornerstone-viewport';
+import {CornerstoneViewport from} 'react-cornerstone-viewport';
 
 //Import einer Bibliothek für die Bildanzeige (z.B. CornerstoneViewer)
 
@@ -19,7 +19,7 @@ function AnalysisPage() {
     }
 [filename]);
 
-retunr (
+return (
     <div>
        <h1 calssName="text-2xl font-bold mb-4">MRT Bildanalyse</h1>
        {/* Hier wird das Bild angezeigt */}
