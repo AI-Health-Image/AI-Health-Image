@@ -31,6 +31,7 @@ function Header() {
           <Link to="/" className="hover:text-gray-300">Home</Link>
           
           {(role === 'patient' /*|| role==='doctor'*/) && <Link to="/upload" className="hover:text-gray-300">Upload</Link>}
+          {(role === 'patient' /*|| role==='doctor'*/) && <Link to="/archiv" className="hover:text-gray-300">Archiv</Link>}
           
             <Link to="/about" className="hover:text-gray-300">About</Link>
           <Link to="/contact" className="hover:text-gray-300">Contact</Link>
