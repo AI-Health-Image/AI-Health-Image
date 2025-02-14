@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Layout from "../layout/Layout";
 import useStore from "../components/jwtStore";
+import Cookies from "js-cookie";
 
 function LoginPage() {
   const [successMessage, setSuccessMessage] = useState(null);
@@ -38,7 +39,7 @@ function LoginPage() {
     // Speichert den Token im LocalStorage
     setJwt(data.token);
     //console.log("JWT:", getJwt());
-
+    Cookies.set("jwt", data.token, { expires: 7 }); // Speichert den JWT-Token in einem Cookie
     // Weiterleitung auf die Startseite
     navigate("/");
   }
