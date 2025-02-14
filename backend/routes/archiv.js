@@ -49,20 +49,33 @@ router.post("/archivCreate", async (req, res) => {
 
 router.post("/archiv",async (req, res) => {
   const token = req.body.token || req.headers.authorization.split(' ')[1];
-  const decodedToken = jsonwebtoken.decode(token, (err, decoded) => {
+  const decodedToken = jsonwebtoken.decode(token, (err) => {
     if (err) {
       console.error("Token konnte nicht decodiert werden", err);
       return res.status(401).json({ message: "Token ist ungültig" });
     }
   });
-  console.log("decodedToken", decodedToken);
-  console.log("decodedToken email", decodedToken.email);
+  console.log("archiv decodedToken", decodedToken);
 
-  const archiv = await prisma.UserArchivs.findUnique({
-    where:{
+  const user = await prisma.users.findUnique({
+    where: {
       email: decodedToken.email,
-    }
+    },
   });
+
+  if(!user){
+    return res.status(404).json({message:"user not found"})
+  }
+
+     archiv = await prisma.UserArchivs.findMany({
+      where:{
+        userId: user.id, 
+      }
+    });
+
+  console.log( archiv);
 
   res.send({ archiv });
 });
+
+module.exports = router;

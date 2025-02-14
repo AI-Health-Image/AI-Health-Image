@@ -49,7 +49,7 @@ router.post("/upload", upload.single("image"), async (req, res) => {
 
   console.log("user", user);
 
-  
+  const archiv = '';
   
   if(archiv) {
 
@@ -61,21 +61,15 @@ router.post("/upload", upload.single("image"), async (req, res) => {
       },
     });
   } else {
-    
-    await prisma.UserArchivs.create({
+    const date = new Date(); 
+    const archiv = await prisma.UserArchivs.create({
       data: {
-        name: Date.now(),
-        date: Date.now(),
+        name: date.toString(),
+        date: date,
         userId: user.id,
       },
     });
-    
-    const archiv = await prisma.UserArchivs.findUnique({
-      where:{
-        email: decodedToken.email,
-      }
-    });
-    
+
     await  prisma.UserUploads.create({
       data: { 
         userId: user.id,  //ID des Users, der das Bild hochgeladen hat
