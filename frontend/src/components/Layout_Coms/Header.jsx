@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import useJwtStore from "../jwtStore";
-
+import Cookies from "js-cookie";
 
 function Header() {
   //const jwt = useJwtStore((state) => state.jwt);
@@ -19,8 +19,10 @@ function Header() {
   };
 
   const logout = () => {
-    useJwtStore.removeJwt();
+    useJwtStore.getState().removeJwt();
+    Cookies.remove("jwt", { path: '' });
     setDropdownOpen(false);
+    Navigate('/login');
   };
 
     return (
@@ -31,6 +33,7 @@ function Header() {
           <Link to="/" className="hover:text-gray-300">Home</Link>
           
           {(role === 'patient' /*|| role==='doctor'*/) && <Link to="/upload" className="hover:text-gray-300">Upload</Link>}
+          {(role === 'patient' /*|| role==='doctor'*/) && <Link to="/archiv" className="hover:text-gray-300">Archiv</Link>}
           
             <Link to="/about" className="hover:text-gray-300">About</Link>
           <Link to="/contact" className="hover:text-gray-300">Contact</Link>

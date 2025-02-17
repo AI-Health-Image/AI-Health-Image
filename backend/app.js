@@ -4,6 +4,7 @@ const cors = require('cors');
 const authRouter = require("./routes/auth");
 const uploadRouter = require("./routes/upload");
 const analyseRouter = require("./routes/analyse");
+const archivRouter = require("./routes/archiv");
 
 // Initialisierung von Express
 const app = express();
@@ -31,6 +32,8 @@ app.use("/upload", uploadRouter);
 
 // Analyse Route
 app.use("/analyse", analyseRouter);
+// Upload Route
+app.use("/archiv", archivRouter);
 
 // Server wird gestartet auf die Variable Port
 app.listen(port, () => {

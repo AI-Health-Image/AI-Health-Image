@@ -5,6 +5,7 @@ async function JwtVerify() {
   const { jwt } = useJwtStore.getState();
 
   if (!jwt) {
+    console.error("No JWT token found");
     return false;
   }
 
