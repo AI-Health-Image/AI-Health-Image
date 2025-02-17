@@ -62,7 +62,7 @@ router.post("/upload", upload.single("image"), async (req, res) => {
     });
   } else {
     const date = new Date(); 
-    const archiv = await prisma.UserArchivs.create({
+    const archiv = await prisma.userArchivs.create({
       data: {
         name: date.toString(),
         date: date,
@@ -70,7 +70,7 @@ router.post("/upload", upload.single("image"), async (req, res) => {
       },
     });
 
-    await  prisma.UserUploads.create({
+    await  prisma.userUploads.create({
       data: { 
         userId: user.id,  //ID des Users, der das Bild hochgeladen hat
         uploadedFilname: req.file.filename,  //Dateiname des hochgeladenen Bildes

@@ -2,12 +2,15 @@ import Layout from "../layout/Layout";
 import { FolderClosed, Plus } from "lucide-react";
 import useJwtStore from "../components/jwtStore";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ArchivPage() {
   const jwt = useJwtStore((state) => state.jwt);
   const [archivData, setArchivData] = useState([]);
   const [successMessage, setSuccessMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const navigate = useNavigate();
 
   const loadingArchiv = async () => {
     const response = await fetch("http://localhost:3000/archiv/archiv", {
@@ -51,6 +54,11 @@ function ArchivPage() {
     const data = await response.json();
     setSuccessMessage(data.message);
     loadingArchiv();
+  }; 
+
+  const handleSubmit = async (id) => {
+    navigate(`/analyse/${id}`);
+
   };
 
   return (
@@ -71,13 +79,16 @@ function ArchivPage() {
         {/* Hier wird das Archiv angezeigt */}
         {archivData.length > 0 ? (
           <ul className="grid grid-cols-5 mx-auto gap-2">
-            {archivData.map((item, index) => (
+            {archivData.map((archiv, index) => (
               <li
                 key={index}
                 className="mb-2 mx-2 justify-between items-center flex flex-col"
               >
+
+                <button onClick={handleSubmit(archiv.id)} className="flex flex-col justify-center items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 <FolderClosed className="text-white size-20 " />
-                <h1 className="text-white ">{item.name}</h1>
+                <h1 className="text-white ">{archiv.name}</h1>
+                </button>
               </li>
             ))}
 
