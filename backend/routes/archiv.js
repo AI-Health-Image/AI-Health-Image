@@ -60,7 +60,7 @@ router.post("/archiv", async (req, res) => {
     return res.status(401).json({ message: "Token ist ungültig" });
   }
 
-  console.log("archiv decodedToken", decodedToken);
+  //console.log("archiv decodedToken", decodedToken);
 
   const user = await prisma.Users.findUnique({
     where: {
@@ -71,14 +71,14 @@ router.post("/archiv", async (req, res) => {
   if (!user) {
     return res.status(404).json({ message: "User not found" });
   }
-  console.log("archiv user", user);
+  //console.log("archiv user", user);
 
   const archiv = await prisma.UserArchivs.findMany({
     where: {
       userId: user.id,
     },
   });
-  console.log(archiv);
+  //console.log(archiv);
 
   if (archiv.length === 0) {
     return res.status(200).json({ message: "No archiv found" });
