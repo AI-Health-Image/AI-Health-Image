@@ -1,30 +1,31 @@
 const express = require('express');
 const router = express.Router();
-const multer = require('multer');
 const { PrismaClient } = require('@prisma/client');
 const jwt = require('jsonwebtoken');
 const prisma = new PrismaClient();
+const path = require('path');
 
-const imageStorage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, './data/upload');
-    },
-    filename: (req, file, cb) => {
-        cb(null, `image-${Date.now()}.${file.originalname}`);
-    },
-});
 
-const upload = multer({ storage: imageStorage });
 
 router.get('/api/image/:id', async (req, res) => {
-    const { id } = req.params.id;
-    const files = prisma.userUploads.findMany({
+    const { id } = req.params;
+    const archiveId = parseInt(id);
+    console.log(id);
+    const files = await prisma.userUploads.findMany({
         where: {
-            archivId: id,
+            archivId: archiveId,
         },
     }); 
     console.log(files);
-    res.sendFile(--dirname + `/data/upload/${id}`);
+   
+
+   res.json({ data: files });
+});
+
+// Separate route for serving files
+router.get('/uploads/:filename', (req, res) => {
+    const filePath = path.resolve('./data/upload', req.params.filename);
+    res.sendFile(filePath);
 });
 
 module.exports = router;

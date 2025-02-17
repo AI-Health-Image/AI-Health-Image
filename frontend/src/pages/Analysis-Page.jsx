@@ -1,35 +1,52 @@
-//AnalysisPage
-
-import  {useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
+import  { useState, useEffect } from 'react';
 import axios from 'axios';
-//import cornerstone from 'cornerstone/core';
-//import cornerstoneTools from 'cornerstone/tools';
+import { useParams } from 'react-router-dom';
+import Layout from '../layout/Layout';
 
-
-
-function AnalysisPage() {
+const AnalysisPage = () => {
     const { id } = useParams();
     const [imageURL, setImageURL] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchImage = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/analyse/api/image/:id`);
-                setImageURL(URL.createObjectURL(response.data));
+                setLoading(true);
+                const response = await axios.get(`http://localhost:3000/analyse/api/image/${id}`);
+                console.log(response);
+                setImageURL(response.data);
+                setLoading(false);
             } catch (error) {
                 console.error("Fehler beim Laden des Bildes", error);
+                setError(error.message);
+                setLoading(false);
             }
         };
 
         fetchImage();
-    }, [filname]);
+    }, [id]);
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
 
     return (
-        <div>
+        <Layout>
             <h1>Bildanalyse</h1>
-            {imageURL && <img src={imageURL} alt="Bild" />}
-        </div>
+            {imageURL && Array.isArray(imageURL.data) && (
+    <div className="grid grid-cols-3 gap-4">
+        {imageURL.data.map((file) => (
+            <div key={file.id} className="p-2">
+                <img 
+                    src={`http://localhost:3000/analyse/uploads/${file.uploadedFilname}`}
+                    alt="Uploaded"
+                    className="max-w-full h-auto"
+                />
+            </div>
+        ))}
+    </div>
+)}
+        </Layout>
     );
 };
 
