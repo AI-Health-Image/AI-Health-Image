@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const authRouter = require("./routes/auth");
 const uploadRouter = require("./routes/upload");
+const archivRouter = require("./routes/archiv");
 
 // Initialisierung von Express
 const app = express();
@@ -27,6 +28,9 @@ app.use("/auth", authRouter);
 
 // Upload Route
 app.use("/upload", uploadRouter);
+
+// Upload Route
+app.use("/archiv", archivRouter);
 
 // Server wird gestartet auf die Variable Port
 app.listen(port, () => {

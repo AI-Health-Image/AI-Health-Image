@@ -49,12 +49,35 @@ router.post("/upload", upload.single("image"), async (req, res) => {
 
   console.log("user", user);
 
-  await  prisma.UserUploads.create({
-    data: { 
-      userId: user.id,  //ID des Users, der das Bild hochgeladen hat
-      uploadedFilname: req.file.filename,  //Dateiname des hochgeladenen Bildes
-    },
-  });
+  const archiv = '';
+  
+  if(archiv) {
+
+    await  prisma.UserUploads.create({
+      data: { 
+        userId: user.id,  //ID des Users, der das Bild hochgeladen hat
+        uploadedFilname: req.file.filename,  //Dateiname des hochgeladenen Bildes
+        archivId: archiv.id
+      },
+    });
+  } else {
+    const date = new Date(); 
+    const archiv = await prisma.UserArchivs.create({
+      data: {
+        name: date.toString(),
+        date: date,
+        userId: user.id,
+      },
+    });
+
+    await  prisma.UserUploads.create({
+      data: { 
+        userId: user.id,  //ID des Users, der das Bild hochgeladen hat
+        uploadedFilname: req.file.filename,  //Dateiname des hochgeladenen Bildes
+        archivId: archiv.id
+      },
+    });
+  }
 
   //Hier wird das hochgeladene Bild weierverarbeitet (z.B. an das ML-Tool senden)
   console.log("Datei hochgeladen:", req.file.path);

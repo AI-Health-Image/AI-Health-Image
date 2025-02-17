@@ -14,6 +14,7 @@ import UploadbuttonPage from "./pages/UploadbuttonPage.jsx";
 import UserSettingsPage from "./pages/UserSettingsPage.jsx";
 import AnalysisPage from "./pages/Analysis-Page.jsx";
 import useJwtStore from "./components/jwtStore";
+import ArchivPage from "./pages/ArchivPage.jsx";
 
 function App() {
   const setJwt = useJwtStore((state) => state.setJwt);
@@ -39,6 +40,7 @@ function App() {
           <Route path="/upload" element={<UploadbuttonPage />} />
           <Route path="/settings" element={<UserSettingsPage />} />
           <Route path="/analysis" element={<AnalysisPage />} />
+          <Route path="/archiv" element={<ArchivPage />} />
         </Routes>
       </BrowserRouter>
       <CookiesBanner />

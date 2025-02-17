@@ -19,11 +19,23 @@ model Users {
   password    String
   role        String        @default("patient")
   UserUploads UserUploads[]
+  UserArchivs UserArchivs[]
 }
 
 model UserUploads {
-  id              Int    @id @default(autoincrement())
-  email           Users  @relation(fields: [userId], references: [id])
+  id              Int            @id @default(autoincrement())
+  email           Users          @relation(fields: [userId], references: [id])
   userId          Int
   uploadedFilname String
+  idArchiv        UserArchivs    @relation(fields: [archivId], references: [id])
+  archivId        Int
+}
+
+model UserArchivs {
+  id          Int         @id @default(autoincrement())
+  name        String
+  date        DateTime
+  email       Users      @relation(fields: [userId], references: [id])
+  userId      Int 
+  UserUploads UserUploads[]
 }

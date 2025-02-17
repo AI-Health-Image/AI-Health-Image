@@ -48,7 +48,7 @@ function RegisterPage() {
 
     setEmailError(null);
     setPasswordError(null);
-    navigate("/");
+    navigate("/login");
   }
   return (
     <Layout>
