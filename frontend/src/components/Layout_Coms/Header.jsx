@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useJwtStore from "../jwtStore";
+import Cookies from "js-cookie";
 
 
 function Header() {
@@ -20,6 +21,7 @@ function Header() {
 
   const logout = () => {
     useJwtStore.removeJwt();
+    Cookies.set("jwt", '', { expires: 7 });
     setDropdownOpen(false);
   };
 
@@ -31,6 +33,7 @@ function Header() {
           <Link to="/" className="hover:text-gray-300">Home</Link>
           
           {(role === 'patient' /*|| role==='doctor'*/) && <Link to="/upload" className="hover:text-gray-300">Upload</Link>}
+          {(role === 'patient' /*|| role==='doctor'*/) && <Link to="/archiv" className="hover:text-gray-300">Archiv</Link>}
           
             <Link to="/about" className="hover:text-gray-300">About</Link>
           <Link to="/contact" className="hover:text-gray-300">Contact</Link>
