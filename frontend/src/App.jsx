@@ -16,6 +16,7 @@ import AnalysisPage from "./pages/Analysis-Page.jsx";
 import useJwtStore from "./components/jwtStore";
 import ArchivPage from "./pages/ArchivPage.jsx";
 
+
 function App() {
   const setJwt = useJwtStore((state) => state.setJwt);
 
@@ -39,7 +40,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/upload" element={<UploadbuttonPage />} />
           <Route path="/settings" element={<UserSettingsPage />} />
-          <Route path="/analysis" element={<AnalysisPage />} />
+          <Route path="/analyse/:id" element={<AnalysisPage />} />
           <Route path="/archiv" element={<ArchivPage />} />
         </Routes>
       </BrowserRouter>
