@@ -6,6 +6,7 @@ async function JwtVerify() {
 
   if (!jwt) {
     return false;
+    console.error("No JWT token found");
   }
 
   //console.log(jwt);
