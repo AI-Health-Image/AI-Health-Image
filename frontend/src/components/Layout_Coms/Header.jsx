@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import useJwtStore from "../jwtStore";
 import Cookies from "js-cookie";
-
 
 function Header() {
   //const jwt = useJwtStore((state) => state.jwt);
@@ -20,9 +19,10 @@ function Header() {
   };
 
   const logout = () => {
-    useJwtStore.removeJwt();
-    Cookies.set("jwt", '', { expires: 7 });
+    useJwtStore.getState().removeJwt();
+    Cookies.remove("jwt", { path: '' });
     setDropdownOpen(false);
+    Navigate('/login');
   };
 
     return (
