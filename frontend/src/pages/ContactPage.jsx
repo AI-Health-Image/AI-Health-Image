@@ -9,7 +9,7 @@ function ContactPage() {
   return (
     <div
       className="bg-cover bg-center h-screen"
-      style={{ backgroundImage: "url('/mrt-maschin.jpg')" }}
+      
     >
       <Layout>
         <div className="container mx-auto px-4 py-8">
