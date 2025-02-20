@@ -1,3 +1,4 @@
+import sys
 import torch
 import torch.nn as nn
 from torchvision import transforms
@@ -5,9 +6,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import time
 from thop import profile
-import sys
 import os
-import pathlib as Path
 
 class SimpleCNN(nn.Module):
     def __init__(self, model_type='c', num_classes=6): # The ‘model_type’ variable can be changed to ‘f, c, q’ according to the model type.
@@ -138,6 +137,8 @@ def main():
         print(f'Speed CPU b1 (ms): {metrics["speed_cpu_b1"]:.2f} ms')
         print(f'Speed V100 b1 (ms): {metrics["speed_v100_b1"]:.2f} ms')
         print(f'Speed V100 b32 (ms): {metrics["speed_v100_b32"]:.2f} ms')
+        print(f'Prediction: {class_names[predicted_class]}')
+        print(f'Accuracy: {confidence:.2f}%')
 
         output_dir = '../backend/data/output/'
         if not os.path.exists(output_dir):
