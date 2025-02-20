@@ -13,7 +13,7 @@ function ContactPage() {
     >
       <Layout>
         <div className="container mx-auto px-4 py-8">
-          <h1 className="text-3xl font-bold mb-6 text-white">Kontakt:</h1>
+          <h1 className="text-3xl font-bold mb-6 text-white">Kontakt</h1>
           
           <div className="bg-slate-800 rounded-xl p-6 max-w-2xl mx-auto">
             <form onSubmit={handleSubmit} className="space-y-4">
