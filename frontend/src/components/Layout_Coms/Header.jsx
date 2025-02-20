@@ -27,7 +27,7 @@ function Header() {
 
     return (
       <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
-        <div className="font-bold text-xl">AI-Health-Image Analyzer</div>
+        <div className="font-bold text-xl text-blue-500">Health-Image-Analyzer</div>
         <nav className="flex gap-2">
             {/* Hier Navigationselemente einfügen */}
           <Link to="/" className="hover:text-gray-300">Home</Link>
