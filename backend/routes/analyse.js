@@ -38,7 +38,7 @@ router.get('/api/analyse/:id', async (req, res) => {
     });
     console.log(files);
 
-    const brain = spawn('../ki-modell/venv/bin/python', ['../ki-modell/brain.py', files[0].uploadedFilname]);
+    const brain = spawn('../ki-modell/venv/scripts/python', ['../ki-modell/brain.py', files[0].uploadedFilname]);
     console.log(brain);
     const result = await new Promise((resolve, reject) => {
         brain.stdout.on('data', (data) => {
