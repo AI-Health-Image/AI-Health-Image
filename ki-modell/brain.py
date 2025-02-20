@@ -110,7 +110,7 @@ def main():
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model = SimpleCNN(num_classes=6).to(device)
         model.load_state_dict(
-            torch.load('/Users/workspace/AI-Health-Image/ki-modell/modules/Vbai-2.1c.pt',
+            torch.load('../ki-modell/modules/Vbai-2.1c.pt',
                        map_location=device))
 
         metrics = calculate_performance_metrics(model, device)
