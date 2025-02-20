@@ -1,6 +1,9 @@
 node_modules
 
 .env
-upload
-migrations
 *.db
+*.db*
+upload
+output
+prisma/migrations
+
