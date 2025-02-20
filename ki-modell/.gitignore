@@ -1,6 +1,3 @@
 venv
-*.jpg
-*.png
-*.pt
-ki-modell/images
-ki-modell/modules
+modules
+images 

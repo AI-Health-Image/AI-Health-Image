@@ -5,6 +5,9 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import time
 from thop import profile
+import sys
+import os
+import pathlib as Path
 
 class SimpleCNN(nn.Module):
     def __init__(self, model_type='c', num_classes=6): # The ‘model_type’ variable can be changed to ‘f, c, q’ according to the model type.
@@ -96,41 +99,61 @@ def calculate_performance_metrics(model, device, input_size=(1, 3, 224, 224)):
     }
 
 def main():
-    transform = transforms.Compose([
-        transforms.Resize((224, 224)),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-    ])
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = SimpleCNN(num_classes=6).to(device)
-    model.load_state_dict(
-        torch.load('./modules/Vbai-2.1c.pt',
-                   map_location=device))
+    try:
+        transform = transforms.Compose([
+            transforms.Resize((224, 224)),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+        ])
 
-    metrics = calculate_performance_metrics(model, device)
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        model = SimpleCNN(num_classes=6).to(device)
+        model.load_state_dict(
+            torch.load('/Users/workspace/AI-Health-Image/ki-modell/modules/Vbai-2.1c.pt',
+                       map_location=device))
 
-    image_path = './images/Alzheimer2.jpg'
+        metrics = calculate_performance_metrics(model, device)
+        print(metrics)
 
-    predicted_class, confidence, image = predict_image(model, image_path, transform, device)
 
-    class_names = ['Alzheimer Disease', 'Mild Alzheimer Risk', 'Moderate Alzheimer Risk', 'Very Mild Alzheimer Risk',
-                   'No Risk', 'Parkinson Disease']
 
-    print(f'Predicted Class: {class_names[predicted_class]}')
-    print(f'Accuracy: {confidence}%')
-    print(f'Params: {metrics["params_million"]:.2f} M')
-    print(f'FLOPs (B): {metrics["flops_billion"]:.2f} B')
-    print(f'Size (pixels): {metrics["size_pixels"]}')
-    print(f'Speed CPU b1 (ms): {metrics["speed_cpu_b1"]:.2f} ms')
-    print(f'Speed V100 b1 (ms): {metrics["speed_v100_b1"]:.2f} ms')
-    print(f'Speed V100 b32 (ms): {metrics["speed_v100_b32"]:.2f} ms')
+        log_output_dir = '../backend/data/output/'
+        print(log_output_dir)
 
-    plt.imshow(image.squeeze(0).permute(1, 2, 0))
-    plt.title(f'Prediction: {class_names[predicted_class]} \nAccuracy: {confidence:.2f}%')
-    plt.axis('off')
+        image_filename = sys.argv[1]
+        print(f'Image: {image_filename}')
+        image_path = '../backend/data/upload/' + image_filename
+
+        predicted_class, confidence, image = predict_image(model, image_path, transform, device)
+
+        class_names = ['Alzheimer Disease', 'Mild Alzheimer Risk', 'Moderate Alzheimer Risk', 'Very Mild Alzheimer Risk',
+                       'No Risk', 'Parkinson Disease']
+
+        print(f'Predicted Class: {class_names[predicted_class]}')
+        print(f'Accuracy: {confidence}%')
+        print(f'Params: {metrics["params_million"]:.2f} M')
+        print(f'FLOPs (B): {metrics["flops_billion"]:.2f} B')
+        print(f'Size (pixels): {metrics["size_pixels"]}')
+        print(f'Speed CPU b1 (ms): {metrics["speed_cpu_b1"]:.2f} ms')
+        print(f'Speed V100 b1 (ms): {metrics["speed_v100_b1"]:.2f} ms')
+        print(f'Speed V100 b32 (ms): {metrics["speed_v100_b32"]:.2f} ms')
+
+        output_dir = '../backend/data/output/'
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+
+        plt.imshow(image.squeeze(0).permute(1, 2, 0))
+        plt.title(f'Prediction: {class_names[predicted_class]} \nAccuracy: {confidence:.2f}%')
+        plt.axis('off')
+        #plt.savefig(output_dir + image)
+        plt.savefig(os.path.join(output_dir, image_filename))
     #plt.show()
-    plt.savefig('output.png')
+    except Exception as e:
+        print("An exception occurred" + str(e))
+    
 
 if __name__ == '__main__':
     main()
+
+    
