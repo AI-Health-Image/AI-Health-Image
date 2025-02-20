@@ -5,6 +5,7 @@ const authRouter = require("./routes/auth");
 const uploadRouter = require("./routes/upload");
 const analyseRouter = require("./routes/analyse");
 const archivRouter = require("./routes/archiv");
+require('dotenv').config();
 
 // Initialisierung von Express
 const app = express();
