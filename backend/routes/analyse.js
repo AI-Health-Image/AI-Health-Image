@@ -4,30 +4,39 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const path = require('path');
 const { spawn } = require('child_process');
+const authenticateToken = require('../src/authenticateToken');
+const fs = require('fs');
 
-router.get('/api/image/:id', async (req, res) => {
+router.get('/api/image/:id', authenticateToken, async (req, res) => {
     const { id } = req.params;
-    const archiveId = parseInt(id);
+    const archivId = parseInt(id);
     const files = await prisma.userUploads.findMany({
         where: {
-            archivId: archiveId,
+            archivId: archivId,
         },
     });
+    //console.log('files:', files);
     res.json({ data: files });
 });
 
-router.get('/uploads/:id', async (req, res) => {
+
+
+router.get('/uploads/:id', authenticateToken, async (req, res) => {
     const imageId = parseInt(req.params.id);
+    //console.log('Image ID:', imageId);
     const imageData = await prisma.userUploads.findUnique({
         where: {
             id: imageId,
         },
     });
     const filePath = path.resolve('./data/upload', imageData.uploadedFilname);
+    //console.log('File Path:', filePath);
     res.sendFile(filePath);
 });
 
-router.get('/api/analyse/:filename', async (req, res) => {
+
+
+router.get('/api/analyse/:filename', authenticateToken, async (req, res) => {
     const filename = req.params.filename;
     //console.log('Filename:', filename);
     const file = await prisma.userUploads.findFirst({
@@ -76,12 +85,13 @@ router.get('/api/analyse/:filename', async (req, res) => {
     res.json({ data: file.uploadedFilname });
 });
 
-router.get('/output/:filename', async (req, res) => {
-    const fileName = req.params.filename;
-    //console.log('output filename:', fileName);
-    const imageData = await prisma.analysedUserUploads.findFirst({
+
+
+router.get('/output/:id', authenticateToken, async (req, res) => {
+    const outputId = parseInt(req.params.id);
+    const imageData = await prisma.analysedUserUploads.findUnique({
         where: {
-            uploadedFilname: fileName,
+            id: outputId,
         },
     });
     //console.log('ImageData:', imageData);
@@ -90,18 +100,19 @@ router.get('/output/:filename', async (req, res) => {
     }
     const filePath = path.resolve('./data/output', imageData.uploadedFilname);
     //console.log(filePath);
-    /*
     if (!fs.existsSync(filePath)) {
         return res.status(204).send('File not found');
-    }*/
+    }
     //console.log('File sended');
     res.sendFile(filePath);
 });
 
-router.get('/output/verify/:filename', async (req, res) => {
+
+
+router.get('/output/verify/:filename', authenticateToken, async (req, res) => {
     const fileName = req.params.filename;
     //console.log('Filename:', fileName);
-    const verifiedImage = await prisma.analysedUserUploads.findFirst({
+    const verifiedImage = await prisma.analysedUserUploads.findMany({
         where: {
             uploadedFilname: fileName,
         },
@@ -114,7 +125,7 @@ router.get('/output/verify/:filename', async (req, res) => {
         return res.status(204).send('No result found');
     }
 
-    const filePath = (verifiedImage.uploadedFilname);
+    const filePath = verifiedImage;
 
     res.send(filePath);
 });

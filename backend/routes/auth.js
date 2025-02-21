@@ -5,6 +5,7 @@ const validator = require('../src/validator');
 const {PrismaClient} = require('@prisma/client');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const authenticateToken = require('../src/authenticateToken');
 const SECRET = 'secretToken';
 
 // Prisma Client wird initialisiert
@@ -111,20 +112,6 @@ router.post("/verify", async (req, res) => {
         // Token is Valid
         res.json({ message: "Token is valid", decoded, verified: true });
     });
-
-    /*
-    try {
-        const decoded = jwt.verify(token, SECRET);
-        const verified = true;
-        res.send({ message: "Token is valid", decoded, verified });
-    } catch (error) {
-        console.error('JWT is invalid', error);
-        console.error('Failed to decode JWT:', error.message);
-        console.error('Token:', token);
-        const verified = false;
-        res.status(401).send({ message: "Token is invalid", verified });
-    }
-    */
 });
 
 module.exports = router;

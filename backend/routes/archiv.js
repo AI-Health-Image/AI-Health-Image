@@ -2,10 +2,12 @@ const express = require("express");
 const router = express.Router();
 const { PrismaClient } = require("@prisma/client");
 const jsonwebtoken = require("jsonwebtoken");
+const authenticateToken = require("../src/authenticateToken");
 
 const prisma = new PrismaClient();
 
-router.post("/archivCreate", async (req, res) => {
+router.post("/archivCreate", authenticateToken, async (req, res) => {
+  /*
   const token = req.body.token || req.headers.authorization.split(' ')[1];
   const decodedToken = jsonwebtoken.decode(token);
 
@@ -16,10 +18,11 @@ router.post("/archivCreate", async (req, res) => {
 
   console.log("decodedToken", decodedToken);
   console.log("decodedToken email", decodedToken.email);
-
-  const user = await prisma.Users.findUnique({
+  */
+  
+  const user = await prisma.users.findUnique({
     where: {
-      email: decodedToken.email,
+      email: req.user.email,
     },
   });
 
@@ -27,12 +30,11 @@ router.post("/archivCreate", async (req, res) => {
     return res.status(404).json({ message: "User not found" });
   }
 
-  // const archiv = await prisma.userArchiv.findUnique({
-  //   where: {
-  //     userId: user.id,
-  //   },
-  // });
-  const archiv = false;
+  const archiv = await prisma.userArchiv.findUnique({
+    where: {
+      userId: user.id,
+    },
+  });
 
   const date = new Date();
 
@@ -50,7 +52,8 @@ router.post("/archivCreate", async (req, res) => {
   }
 });
 
-router.post("/archiv", async (req, res) => {
+router.post("/archiv", authenticateToken, async (req, res) => {
+  /*
   const token = req.body.token || req.headers.authorization.split(' ')[1];
   const decodedToken = jsonwebtoken.decode(token);
 
@@ -61,10 +64,10 @@ router.post("/archiv", async (req, res) => {
   }
 
   //console.log("archiv decodedToken", decodedToken);
-
-  const user = await prisma.Users.findUnique({
+  */
+  const user = await prisma.users.findUnique({
     where: {
-      email: decodedToken.email,
+      email: req.user.email,
     },
   });
 

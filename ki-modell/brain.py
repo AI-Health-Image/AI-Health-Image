@@ -145,7 +145,7 @@ def main():
             os.makedirs(output_dir)
 
         plt.imshow(image.squeeze(0).permute(1, 2, 0))
-        plt.title(f'Prediction: {class_names[predicted_class]} \nAccuracy: {confidence:.2f}%')
+        #plt.title(f'Prediction: {class_names[predicted_class]} \nAccuracy: {confidence:.2f}%')
         plt.axis('off')
         #plt.savefig(output_dir + image)
         plt.savefig(os.path.join(output_dir, image_filename))
