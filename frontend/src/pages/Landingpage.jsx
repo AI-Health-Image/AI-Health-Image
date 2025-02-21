@@ -1,6 +1,6 @@
 import Layout from "../layout/Layout";
 
-function HomePage() {
+function Landingpage() {
   return (
     <div className="bg-cover bg-center min-h-screen" 
          style={{ backgroundImage: "url('/mrt-maschin.jpg')" }}>
@@ -48,6 +48,6 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default Landingpage;
 
 
