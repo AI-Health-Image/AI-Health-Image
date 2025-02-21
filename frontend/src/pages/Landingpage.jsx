@@ -2,47 +2,52 @@ import Layout from "../layout/Layout";
 
 function HomePage() {
   return (
-    <div
-      className="bg-cover bg-center h-screen"
-      style={{ backgroundImage: "url('/mrt-maschin.jpg')" }}
-    >
+    <div className="bg-cover bg-center min-h-screen" 
+         style={{ backgroundImage: "url('/mrt-maschin.jpg')" }}>
       <Layout>
-        <div className="flex flex-col justify-between items-center p-2 rounded m-2 bg-slate-00">
-          <div className="max-w-45">
-            <img src="werbung01.jpg" alt="werbungsblock" className=""></img>
+        {/* Hero Section */}
+        <section className="flex flex-col items-center justify-center py-8">
+          <h1 className="text-4xl font-bold text-white mb-4">Health Image Analyzer</h1>
+          <p className="text-xl text-white mb-6 max-w-2xl text-center">
+            Innovative KI-gestützte Bildanalyse für präzise medizinische Diagnostik
+          </p>
+        </section>
+
+        {/* Main Content Grid */}
+        <div className="grid md:grid-cols-2 gap-6 p-4 max-w-5xl mx-auto">
+          {/* Video Section */}
+          <div className="bg-slate-800/60 rounded-xl p-4">
+            <h2 className="text-xl font-bold text-white mb-3">Demo Video</h2>
+            <iframe
+              className="w-full aspect-video rounded-lg"
+              src="https://www.youtube.com/embed/aj1Xj-WN8uo?si=UHPSDRxEEQSvAmNE"
+              title="Health Image Analyzer Demo"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+
+          {/* Info Section */}
+          <div className="bg-slate-800/60 rounded-xl p-4 text-white">
+            <h2 className="text-xl font-bold mb-3">Über unseren Service</h2>
+            <p className="mb-4">
+              Mit modernster KI-Technologie unterstützen wir medizinisches Personal 
+              bei der schnellen und präzisen Analyse von Bildaufnahmen.
+            </p>
+            <h3 className="text-lg font-bold mb-2">Unsere Vorteile:</h3>
+            <ul className="list-disc list-inside">
+              <li>Schnelle KI-gestützte Analyse</li>
+              <li>Hohe Präzision und Zuverlässigkeit</li>
+              <li>DSGVO-konforme Datensicherheit</li>
+              <li>Einfache Integration in bestehende Systeme</li>
+            </ul>
           </div>
         </div>
-
-        <section className=" p-2 grid grid-flow-col justify-center items-center gap-2">
-          <div className="max-w-45">
-            <img src="werbung01.jpg" alt="werbungsblock" className=""></img>
-          </div>
-          <div>
-            <p className=" bg-slate-800 text-white rounded-xl p-2">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam voluptua. At vero eos et accusam et justo duo
-              dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-              sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-              amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-              invidunt ut labore et dolore magna aliquyam erat, sed diam
-              voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-              Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
-              dolor sit amet.
-            </p>
-          </div>
-          <iframe
-            className="w-full xl:min-h-60 min-h-80"
-            src="https://www.youtube.com/embed/aj1Xj-WN8uo?si=UHPSDRxEEQSvAmNE"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
-        </section>
       </Layout>
     </div>
   );
 }
+
 export default HomePage;
+
+
