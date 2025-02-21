@@ -39,9 +39,7 @@ function AboutPage() {
             <p>
               Placeholder für individuelle Informationen über Teammitglied 4.
             </p>
-          </div>
-          <div className="bg-white p-4 rounded shadow-md col-span-2">
-            <h3 className="text-xl font-bold mb-2">Reza</h3>
+
             <p>
               Placeholder für individuelle Informationen über Teammitglied 5.
             </p>
