@@ -22,7 +22,7 @@ function ContactPage() {
                 <input
                   type="text"
                   id="name"
-                  className="w-full p-2 rounded-md"
+                  className="w-full p-2 rounded-md bg-white"
                   required
                 />
               </div>
@@ -32,7 +32,7 @@ function ContactPage() {
                 <input
                   type="email"
                   id="email"
-                  className="w-full p-2 rounded-md"
+                  className="w-full p-2 rounded-md bg-white"
                   required
                 />
               </div>
@@ -42,7 +42,7 @@ function ContactPage() {
                 <textarea
                   id="message"
                   rows="4"
-                  className="w-full p-2 rounded-md"
+                  className="w-full p-2 rounded-md bg-white"
                   required
                 ></textarea>
               </div>
