@@ -84,17 +84,25 @@ function UploadbuttonPage() {
     return (
       <Layout>
         <div className="container mx-auto max-w-md p-4 bg-gray-100 mt-4 rounded-lg">
-          <h1 className="text -2xl font-bold mb-4">MRT-Bildanalyse</h1>
-          <input type="file" onChange={handleFileChange} />
-          <button onClick={handleSubmit} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Hochladen</button>
-          {selectedFile && (
-            <img
-              src={URL.createObjectURL(selectedFile)}
-              alt="Vorschau"
-              style={{ maxWidth: "100%" }}
-            />
-          )}
-        </div>
+    <h1 className="text-2xl font-bold mb-4">MRT-Bildanalyse</h1>
+    <input type="file" onChange={handleFileChange} />
+    <button 
+      onClick={handleSubmit} 
+      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded
+                transform transition-transform duration-100 active:scale-95 
+                hover:-translate-y-0.5 active:translate-y-0
+                shadow-lg hover:shadow-xl active:shadow-md"
+    >
+      Hochladen
+    </button>
+    {selectedFile && (
+      <img
+        src={URL.createObjectURL(selectedFile)}
+        alt="Vorschau"
+        style={{ maxWidth: "100%" }}
+      />
+    )}
+  </div>
       </Layout>
     );
   }
