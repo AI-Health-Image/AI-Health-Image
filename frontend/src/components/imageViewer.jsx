@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import useJwtStore from './jwtStore';
 
-function ImageViewer({ imageID, directory, result }) {
+function ImageViewer({ imageID, directory }) {
     const [image, setImage] = useState(null);
     const jwt = useJwtStore((state) => state.jwt);
     useEffect(() => {
@@ -14,7 +14,7 @@ function ImageViewer({ imageID, directory, result }) {
                     authorization: `Bearer ${jwt}`,
                 },
             });
-            console.log(response);
+            //console.log(response);
             const blob = await response.blob();
             const image = URL.createObjectURL(blob);
             setImage(image);
@@ -27,9 +27,8 @@ function ImageViewer({ imageID, directory, result }) {
     }
 
     return (
-        <div className='flex w-full gap-4'>
-            <img src={image} alt="Uploaded Image" />
-            <p className='bg-gray-800 text-white p-4 w-full rounded-2xl'><pre className='text-wrap'>{result}</pre></p>
+        <div className='flex w-full gap-4 justify-center items-center'>
+            <img src={image} alt="Uploaded Image" className='w-full'/>
         </div>
     );
 };

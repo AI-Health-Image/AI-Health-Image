@@ -111,39 +111,98 @@ const AnalysisPage = () => {
     }
   };
   //console.log('ImageURL TEST:', imageURL);
-  console.log('AnalyseURL TEST:', analyseURL);
+  console.log("AnalyseURL TEST:", analyseURL);
 
   return (
     <Layout>
-      <h1 className="text-white text-5xl">Bildanalyse</h1>
-      {imageURL && Array.isArray(imageURL) && (
-        <div>
-          {imageURL.map((file) => (
-            <div key={file.id} className="p-2 mx-auto">
-              <ImageViewer imageID={file.id} directory="uploads" />
-            </div>
-          ))}
-        </div>
-      )}
-      <div className="flex justify-center">
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={handleSubmit}
-          disabled={analyzing}
-        >
-          {analyzing ? "Analyzing..." : "Analyze"}
-        </button>
-      </div>
+      <div className="container mx-auto p-6">
+        <h1 className="text-2xl font-bold text-white mb-6">
+          Bildanalyse Ergebnisse
+        </h1>
 
-      {analyseURL && Array.isArray(analyseURL) && (
-        <div>
-          {analyseURL.map((file) => (
-            <div key={file.id} className="p-2 mx-auto">
-              <ImageViewer imageID={file.id} directory="output" result={file.result} />
+        {/* Image Comparison Section */}
+        <div className="grid md:grid-cols-2 gap-6 mb-6">
+          {/* Original Image */}
+          <div className="bg-slate-800/60 rounded-xl p-4">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold text-white mb-3">
+                Originalbild
+              </h2>
+              {/* Analyze Button */}
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                onClick={handleSubmit}
+                disabled={analyzing}
+              >
+                {analyzing ? "Analyzing..." : "Analyze"}
+              </button>
             </div>
-          ))}
+
+            {/* Display Original Image */}
+            {imageURL && Array.isArray(imageURL) && (
+              <div>
+                {imageURL.map((file) => (
+                  <div key={file.id}>
+                    <ImageViewer imageID={file.id} directory="uploads" />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Display Analyzed Image */}
+          <div className="bg-slate-800/60 rounded-xl p-4">
+            <h2 className="text-xl font-bold text-white mb-3">
+              Analysiertes Bild
+            </h2>
+            {analyseURL && Array.isArray(analyseURL) && (
+              <div>
+                {analyseURL.map((file) => (
+                  <div key={file.id}>
+                    <ImageViewer imageID={file.id} directory="output" />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-      )}
+
+        {/* Bottom Information Block & (maybe later AI Chat) */}
+        <div className="bg-slate-800/60 rounded-xl p-4">
+          <h2 className="text-xl font-bold text-white mb-3">Analyse Details</h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-slate-700/60 rounded-lg p-4 text-white">
+              <h3 className="font-semibold mb-2">Erkennungen</h3>
+              {analyseURL && (
+                <pre className="whitespace-pre-wrap text-sm">
+                  {JSON.stringify(analyseURL.detections, null, 2)}
+                </pre>
+              )}
+            </div>
+            
+            {/* Display the analysis results */}
+            <div className="bg-slate-700/60 rounded-lg p-4 text-white">
+              <h3 className="font-semibold mb-2">Weitere Informationen</h3>
+              {analyseURL && Array.isArray(analyseURL) && (
+                <div>
+                  {analyseURL.map((file) => (
+                    <div key={file.id}>
+                      <ul className="list-none list-inside">
+                        <li>Analyse-ID: {file.id}</li>
+                        <li>Erstellt am: {file.date}</li>
+                        <li>
+                          <pre className="text-wrap">{file.result}</pre>
+                        </li>
+                        {/* Add more analysis details here */}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 };
