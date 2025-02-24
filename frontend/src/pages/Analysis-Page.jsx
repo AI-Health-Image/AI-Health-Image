@@ -63,45 +63,89 @@ const AnalysisPage = () => {
 
   return (
     <Layout>
-      <h1>Bildanalyse</h1>
-      {imageURL && Array.isArray(imageURL.data) && (
-        <div className="grid grid-cols-3 gap-4">
-          {imageURL.data.map((file) => (
-            <div key={file.id} className="p-2">
-              <img
-                src={`http://localhost:3000/analyse/uploads/${file.uploadedFilname}`}
-                alt="Uploaded"
-                className="max-w-full h-auto"
-              />
-            </div>
-          ))}
-        </div>
-      )}
-      <div>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={handleSubmit}
-          disabled={analyzing}
-        >
-          {analyzing ? "Analyzing..." : "Analyze"}
-        </button>
-      </div>
+      <div className="container mx-auto p-6">
+        <h1 className="text-2xl font-bold text-white mb-6">Bildanalyse Ergebnisse</h1>
+        
+        {/* Analyze Button */}
+        <div>
+<button
+  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+  onClick={handleSubmit}
+  disabled={analyzing}
+>
+  {analyzing ? "Analyzing..." : "Analyze"}
+</button>
+</div>
 
-      {analyseURL && Array.isArray(analyseURL.data) && (
-        <div className="grid grid-cols-3 gap-4">
-          {analyseURL.data.map((file) => (
-            <div key={file.id} className="p-2">
+        {/* Image Comparison Section */}
+        <div className="grid md:grid-cols-2 gap-6 mb-6">
+          {/* Original Image */}
+          <div className="bg-slate-800/60 rounded-xl p-4">
+            <h2 className="text-xl font-bold text-white mb-3">Originalbild</h2>
+            {imageURL && (
               <img
-                src={`http://localhost:3000/analyse/output/${file.uploadedFilname}`}
-                alt="Uploaded"
-                className="max-w-full h-auto"
+                src={`http://localhost:3000/analyse/uploads/${imageURL.data[0].uploadedFilname}`}
+                alt="Original"
+                className="w-full rounded-lg"
               />
-            </div>
-          ))}
+            )}
+          </div>
+
+
+          {/* Analyzed Image */}
+          <div className="bg-slate-800/60 rounded-xl p-4">
+            <h2 className="text-xl font-bold text-white mb-3">Analysiertes Bild</h2>
+            {analyseURL && (
+              <img
+                src={`http://localhost:3000/analyse/output/${analyseURL.data[0].uploadedFilname}`}
+                alt="Analyzed"
+                className="w-full rounded-lg"
+              />
+            )}
+          </div>
         </div>
-      )}
+
+        {/* Analysis Results */}
+        <div className="bg-slate-800/60 rounded-xl p-4">
+          <h2 className="text-xl font-bold text-white mb-3">Analyse Details</h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-slate-700/60 rounded-lg p-4 text-white">
+              <h3 className="font-semibold mb-2">Erkennungen</h3>
+              {analyseURL && (
+                <pre className="whitespace-pre-wrap text-sm">
+                  {JSON.stringify(analyseURL.detections, null, 2)}
+                </pre>
+              )}
+            </div>
+            <div className="bg-slate-700/60 rounded-lg p-4 text-white">
+              <h3 className="font-semibold mb-2">Weitere Informationen</h3>
+              {analyseURL && (
+                <ul className="list-disc list-inside">
+                  <li>Analyse-ID: {analyseURL.id}</li>
+                  <li>Erstellt am: {new Date().toLocaleString()}</li>
+                  {/* Add more analysis details here */}
+                </ul>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Loading State */}
+        {loading && (
+          <div className="text-center py-8">
+            <p className="text-white">Analysiere Bild...</p>
+          </div>
+        )}
+
+        {/* Error State */}
+        {error && (
+          <div className="bg-red-500/60 rounded-xl p-4 mt-4">
+            <p className="text-white">{error}</p>
+          </div>
+        )}
+      </div>
     </Layout>
   );
-};
+}
 
 export default AnalysisPage;
