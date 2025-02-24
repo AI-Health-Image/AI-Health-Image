@@ -13,7 +13,7 @@ function ArchivPage() {
 
   const loadingArchiv = async () => {
     try {
-      const response = await fetch("http://localhost:3000/archiv/archiv", {
+      const response = await fetch(import.meta.env.VITE_API_URL + "archiv/archiv", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -48,7 +48,7 @@ function ArchivPage() {
   const creatingArchiv = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3000/archiv/archivCreate",
+        import.meta.env.VITE_API_URL + "archiv/archivCreate",
         {
           method: "POST",
           headers: {

@@ -19,7 +19,7 @@ const AnalysisPage = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `http://localhost:3000/analyse/api/image/${id}`,
+          `${import.meta.env.VITE_API_URL}analyse/api/image/${id}`,
           {
             method: "GET",
             headers: {
@@ -39,7 +39,7 @@ const AnalysisPage = () => {
 
         //console.log(responseData.data[0].uploadedFilname);
         const responseAnalyse = await fetch(
-          `http://localhost:3000/analyse/output/verify/${responseData.data[0].uploadedFilname}`,
+          `${import.meta.env.VITE_API_URL}analyse/output/verify/${responseData.data[0].uploadedFilname}`,
           {
             method: "GET",
             headers: {
@@ -77,7 +77,7 @@ const AnalysisPage = () => {
       const filename = imageURL[0].uploadedFilname;
       //console.log(filename);
       const response = await fetch(
-        `http://localhost:3000/analyse/api/analyse/${filename}`,
+        `${import.meta.env.VITE_API_URL}analyse/api/analyse/${filename}`,
         {
           method: "GET",
           headers: {
@@ -92,7 +92,7 @@ const AnalysisPage = () => {
 
       // Fetch the newly analyzed image
       const responseNewAnalyse = await axios.get(
-        `http://localhost:3000/analyse/output/verify/${responseData.data}`,
+        `${import.meta.env.VITE_API_URL}analyse/output/verify/${responseData.data}`,
         {
           headers: {
             Authorization: `Bearer ${jwt}`, // Der JWT Token wird als Bearer Token übergeben

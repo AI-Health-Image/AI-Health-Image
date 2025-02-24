@@ -35,7 +35,7 @@ function UploadbuttonPage() {
     formData.append("image", selectedFile);
 
     try {
-      const response = await fetch("http://localhost:3000/upload/upload", {
+      const response = await fetch(import.meta.env.VITE_API_URL + "upload/upload", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${jwt}`,   // Der JWT Token wird als Bearer Token übergeben

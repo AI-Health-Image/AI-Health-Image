@@ -8,7 +8,7 @@ function ImageViewer({ imageID, directory }) {
         async function loadImage() {
             //console.log('imageURL:', imageID);
             //console.log('directory:', directory);
-            const response = await fetch(`http://localhost:3000/analyse/${directory}/${imageID}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}analyse/${directory}/${imageID}`, {
                 method: 'GET',
                 headers: {
                     authorization: `Bearer ${jwt}`,
