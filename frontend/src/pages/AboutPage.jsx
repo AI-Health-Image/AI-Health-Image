@@ -3,63 +3,45 @@ import Layout from "../layout/Layout";
 function AboutPage() {
   return (
     <div
-      className="bg-cover bg-center h-screen"
-      style={{ backgroundImage: "url('/mrt-maschin.jpg')" }}
+      className="bg-cover bg-center h-screen flex flex-col justify-center"
+      style={{ backgroundImage: "url('/itmedical.jpg')" }}
     >
       <Layout>
-        <div className="flex flex-col justify-between items-center p-2 rounded m-2 bg-slate-00">
+        <div className="flex flex-col justify-center items-center p-2 rounded m-2 bg-slate-00">
           <div className="max-w-45">
-            <img src="werbung01.jpg" alt="werbungsblock" className=""></img>
+            <p className="bg-slate-800 text-white rounded-xl p-2">
+              Unsere Plattform ermöglicht es Nutzern, medizinische Bilder wie CT-Scans hochzuladen und diese mithilfe von Künstlicher Intelligenz (KI) analysieren zu lassen. Unser Ziel ist es, sowohl medizinischen Fachkräften als auch Patienten dabei zu helfen, Krankheiten frühzeitig zu erkennen und fundierte Entscheidungen zu treffen. Durch den Einsatz fortschrittlicher KI-Modelle bieten wir präzise und zuverlässige Analysen, die den Diagnoseprozess unterstützen. Datensicherheit und der Schutz der Privatsphäre unserer Nutzer stehen dabei für uns an oberster Stelle.
+            </p>
           </div>
         </div>
 
-        <section className="p-2 grid grid-flow-col justify-center items-center gap-2">
-          <div className="max-w-45">
-            <img src="werbung01.jpg" alt="werbungsblock" className=""></img>
-          </div>
-          <div>
-            <p className="bg-slate-800 text-white rounded-xl p-2">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam voluptua. At vero eos et accusam et justo duo
-              dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-              sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-              amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-              invidunt ut labore et dolore magna aliquyam erat, sed diam
-              voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-              Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
-              dolor sit amet.
-            </p>
-          </div>
-        </section>
-
-        <section className="p-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+        <section className="p-2 grid grid-cols-2 gap-4">
           <div className="bg-white p-4 rounded shadow-md">
-            <h3 className="text-xl font-bold mb-2">Teammitglied 1</h3>
+            <h3 className="text-xl font-bold mb-2">J.D.</h3>
             <p>
               Placeholder für individuelle Informationen über Teammitglied 1.
             </p>
           </div>
           <div className="bg-white p-4 rounded shadow-md">
-            <h3 className="text-xl font-bold mb-2">Teammitglied 2</h3>
+            <h3 className="text-xl font-bold mb-2">Manuel Huck</h3>
             <p>
               Placeholder für individuelle Informationen über Teammitglied 2.
             </p>
           </div>
           <div className="bg-white p-4 rounded shadow-md">
-            <h3 className="text-xl font-bold mb-2">Teammitglied 3</h3>
+            <h3 className="text-xl font-bold mb-2">Nazlihan</h3>
             <p>
               Placeholder für individuelle Informationen über Teammitglied 3.
             </p>
           </div>
           <div className="bg-white p-4 rounded shadow-md">
-            <h3 className="text-xl font-bold mb-2">Teammitglied 4</h3>
+            <h3 className="text-xl font-bold mb-2">Cansin Erdi</h3>
             <p>
               Placeholder für individuelle Informationen über Teammitglied 4.
             </p>
           </div>
-          <div className="bg-white p-4 rounded shadow-md">
-            <h3 className="text-xl font-bold mb-2">Teammitglied 5</h3>
+          <div className="bg-white p-4 rounded shadow-md col-span-2">
+            <h3 className="text-xl font-bold mb-2">Reza</h3>
             <p>
               Placeholder für individuelle Informationen über Teammitglied 5.
             </p>

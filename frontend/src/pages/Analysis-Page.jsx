@@ -1,38 +1,63 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Layout from "../layout/Layout";
+import useJwtStore from "../components/jwtStore";
+import ImageViewer from "../components/imageViewer";
 
 const AnalysisPage = () => {
+  const jwt = useJwtStore((state) => state.jwt);
   const { id } = useParams();
-    const [imageURL, setImageURL] = useState(null);
-    const [analyseURL, setAnalyseURL] = useState(null);
+  const [imageURL, setImageURL] = useState(null);
+  const [analyseURL, setAnalyseURL] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [analyzing, setAnalyzing] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchImage = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(
-          `http://localhost:3000/analyse/api/image/${id}`
+        const response = await fetch(
+          `http://localhost:3000/analyse/api/image/${id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${jwt}`, // Der JWT Token wird als Bearer Token übergeben
+            },
+          }
         );
-        console.log(response);
-          setImageURL(response.data);
-          
-          setLoading(true);
-          const responseAnalyse = await axios.get(
-            `http://localhost:3000/analyse/output/${response.data.data[0].uploadedFilname}`
-          );
-          console.log('responseanalyse:',responseAnalyse);
-          if (responseAnalyse.status === 200)
-            setAnalyseURL(responseAnalyse.data);
+        const responseData = await response.json();
+        //console.log('responseData:', responseData);
+        //console.log('responseData.data:', responseData.data);
+        //console.log('responseData.data[0].uploadedFilname:', responseData.data[0].uploadedFilname);
+        if (responseData.data && responseData.data.length > 0) {
+          setImageURL(responseData.data);
+          //console.log('Image URL over responseData:', responseData.data[0].uploadedFilname);
+        }
+
+        //console.log(responseData.data[0].uploadedFilname);
+        const responseAnalyse = await fetch(
+          `http://localhost:3000/analyse/output/verify/${responseData.data[0].uploadedFilname}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${jwt}`, // Der JWT Token wird als Bearer Token übergeben
+            },
+          }
+        );
+        //console.log("responseAnalyse:", responseAnalyse);
+        if (responseAnalyse.status === 200) {
+          const responseAnalyseData = await responseAnalyse.json();
+          //console.log("responseAnalyse.data:", responseAnalyseData);
+          setAnalyseURL(responseAnalyseData);
+        }
 
         setLoading(false);
       } catch (error) {
-        console.error("Fehler beim Laden des analysierten Bildes", error);
+        console.error("Fehler beim Laden der Bilder", error);
         setError(error.message);
         setLoading(false);
       }
@@ -45,21 +70,48 @@ const AnalysisPage = () => {
   if (error) return <div>Error: {error}</div>;
 
   const handleSubmit = async () => {
+    console.log("handleSubmit");
     try {
       setAnalyzing(true);
-      const response = await axios.get(
-        `http://localhost:3000/analyse/api/analyse/${id}`
+      //console.log("imageURL:", imageURL);
+      const filename = imageURL[0].uploadedFilname;
+      //console.log(filename);
+      const response = await fetch(
+        `http://localhost:3000/analyse/api/analyse/${filename}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${jwt}`, // Der JWT Token wird als Bearer Token übergeben
+          },
+        }
       );
-      console.log(response);
-      setAnalyseURL(response.data);
+      const responseData = await response.json();
+      console.log("Response from api/analys:", responseData);
+      setAnalyseURL(responseData);
       setAnalyzing(false);
-      //navigate(0);
+
+      // Fetch the newly analyzed image
+      const responseNewAnalyse = await axios.get(
+        `http://localhost:3000/analyse/output/verify/${responseData.data}`,
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`, // Der JWT Token wird als Bearer Token übergeben
+          },
+        }
+      );
+      //console.log("responseNewAnalyse:", responseNewAnalyse);
+      if (responseNewAnalyse.status === 200) {
+        //console.log("responseNewAnalyse.data:", responseNewAnalyse.data);
+        setAnalyseURL(responseNewAnalyse.data);
+      }
     } catch (error) {
       console.error("Fehler beim Laden des Bildes", error);
       setError(error.message);
       setAnalyzing(false);
     }
   };
+  //console.log('ImageURL TEST:', imageURL);
+  console.log('AnalyseURL TEST:', analyseURL);
 
   return (
     <Layout>
