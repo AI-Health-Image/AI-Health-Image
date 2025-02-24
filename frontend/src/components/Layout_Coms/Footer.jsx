@@ -2,26 +2,48 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="w-full bg-gray-200 p-4 mt-auto">
-      <div>
-        <ul className="flex justify-center space-x-4">      
+    <footer className="w-full bg-gray-800/95 text-white p-4 relative z-20">
+      <div className="max-w-6xl mx-auto">
+        <ul className="flex flex-wrap justify-center gap-4 md:gap-6">
           <li>
-            <Link to="/imprint">Impressum</Link>
+            <Link 
+              to="/imprint" 
+              className="text-sm hover:text-blue-400 transition-colors"
+            >
+              Impressum
+            </Link>
           </li>
           <li>
-            <Link to="/about">Über uns</Link>
+            <Link 
+              to="/privacy" 
+              className="text-sm hover:text-blue-400 transition-colors"
+            >
+              Datenschutz
+            </Link>
           </li>
           <li>
-            <Link to="/contact">Kontakt</Link>
+            <Link 
+              to="/terms" 
+              className="text-sm hover:text-blue-400 transition-colors"
+            >
+              Nutzungsbedingungen
+            </Link>
           </li>
           <li>
-            <Link to="/privacy">Datenschutz</Link>
+            <Link 
+              to="/contact" 
+              className="text-sm hover:text-blue-400 transition-colors"
+            >
+              Kontakt
+            </Link>
           </li>
         </ul>
+        <p className="text-center mt-3 text-sm text-gray-400">
+          © 2025 AI-Health-Image Analyzer
+        </p>
       </div>
-      <p>© 2025</p>
     </footer>
   );
 }
 
-export default Footer;
+export default Footer; // Standard-Export hinzufügen

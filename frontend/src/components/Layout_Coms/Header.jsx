@@ -23,7 +23,7 @@ function Header() {
   };
 
   return (
-    <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
+    <header className="bg-gray-800 text-white p-4 flex justify-between items-center relative z-20">
       <div className="font-bold text-xl drop-shadow-lg">
         AI-Health-Image Analyzer
       </div>
