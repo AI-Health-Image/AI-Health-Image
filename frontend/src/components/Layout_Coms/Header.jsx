@@ -24,8 +24,8 @@ function Header() {
 
   return (
     <header className="bg-gray-800 text-white p-4 flex justify-between items-center relative z-20">
-      <div className="font-bold text-xl drop-shadow-lg">
-        AI-Health-Image Analyzer
+      <div className="flex items-center">
+        <img src="/logo_header.png" alt="AI-Health-Image Analyzer Logo" className="h-16 w-auto mr-4" />
       </div>
       <nav className="flex gap-2">
         <Link to="/" className="hover:text-gray-300">Startseite</Link>
