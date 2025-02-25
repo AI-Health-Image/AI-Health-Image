@@ -12,9 +12,7 @@ function AboutPage() {
       <Layout>
         <div className="flex flex-col justify-center items-center p-4 relative z-10">
           <div className="max-w-4xl text-center bg-gray-900/90 text-white rounded-2xl p-8 shadow-2xl backdrop-blur-sm border border-white/10">
-            <h1 className="text-4xl font-bold mb-6 font-mono bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              AI-Health-Image Analyzer
-            </h1>
+            <img src="/ai_health_image_analyzer_logo.png" alt="AI-Health-Image Analyzer Logo" className="mb-6 w-auto h-64 mx-auto" />
             <p className="text-lg leading-relaxed text-gray-100 drop-shadow-md">
               Unsere Plattform ermöglicht es Nutzern, medizinische Bilder wie CT-Scans hochzuladen und diese
               mithilfe von Künstlicher Intelligenz (KI) analysieren zu lassen. Unser Ziel ist es, sowohl medizinischen
