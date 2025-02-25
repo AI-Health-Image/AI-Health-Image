@@ -12,7 +12,7 @@ async function JwtVerify() {
   //console.log(jwt);
   //console.log(typeof jwt);
 
-  const response = await fetch("http://localhost:3000/auth/verify", {
+  const response = await fetch(import.meta.env.VITE_API_URL + "auth/verify", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -4,6 +4,7 @@ const router = express.Router();
 const multer = require("multer"); // Middleware für Ddatei-Upload
 const {PrismaClient} = require("@prisma/client");
 const jsonwebtoken = require("jsonwebtoken");
+const authenticateToken = require("../src/authenticateToken");
 
 //Prisma-Client initialisieren
 const prisma = new PrismaClient();
@@ -25,12 +26,13 @@ const imageStorage = multer.diskStorage({
 
 const upload = multer({ storage: imageStorage });
 
-router.post("/upload", upload.single("image"), async (req, res) => {
+router.post("/upload", authenticateToken, upload.single("image"), async (req, res) => {
   //console.log("eq.file", req.file);
   if (!req.file) {
     return res.status(400).json({ message: "Kein Bild hochgeladen" });
   }
 
+  /*
   const token = req.body.token || req.headers.authorization.split(' ')[1];
   const decodedToken = jsonwebtoken.decode(token, (err, decoded) => {
     if (err) {
@@ -40,10 +42,11 @@ router.post("/upload", upload.single("image"), async (req, res) => {
   });
   console.log("decodedToken", decodedToken);
   console.log("decodedToken email", decodedToken.email);
+  */
   
   const user = await prisma.users.findUnique({
     where: {
-      email: decodedToken.email,
+      email: req.user.email,
     },
   });
 
