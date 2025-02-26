@@ -3,7 +3,7 @@ import Layout from "../layout/Layout";
 function Landingpage() {
   return (
     <div className="bg-cover bg-center min-h-screen" 
-         style={{ backgroundImage: "url('/mrt-maschin.jpg')" }}>
+         style={{ backgroundImage: "url('/aidoc.jpeg')" }}>
       <Layout>
         {/* Hero Section */}
         <section className="flex flex-col items-center justify-center py-8">
