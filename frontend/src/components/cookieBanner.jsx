@@ -22,7 +22,7 @@ function cookies() {
     <div
       className="fixed bottom-20 left-1/2 transform -translate-x-1/2 
                 bg-black bg-opacity-80 text-white px-6 py-8 rounded-lg
-                max-w-md w-11/12"
+                max-w-md w-11/12 z-1"
     >
       <h2 className="text-2xl font-semibold mb-4">Cookies Message Popup</h2>
       <p className="mb-6">
