@@ -28,15 +28,15 @@ function AboutPage() {
         <section className="p-4 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl w-full relative z-10">
           {[
             { 
-              name: "J.D.", 
-              desc: "J.D. ist unser Full-Stack-Entwickler und sorgt dafür, dass sowohl Frontend als auch Backend nahtlos zusammenarbeiten." 
+              name: "Jeremy Held", 
+              desc: "Jeremy ist unser Full-Stack-Entwickler und sorgt dafür, dass sowohl Frontend als auch Backend nahtlos zusammenarbeiten." 
             },
             { 
               name: "Manuel Huck", 
               desc: "Manuel ist unser Frontend-Entwickler und stellt sicher, dass alle Projektanforderungen erfüllt werden." 
             },
             { 
-              name: "Nazlihan", 
+              name: "Nazlihan Atan", 
               desc: "Nazlihan ist Frontend-Entwicklerin und spezialisiert sich auf die Gestaltung und Implementierung der Benutzeroberfläche." 
             },
             { 
