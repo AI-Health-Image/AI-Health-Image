@@ -16,7 +16,7 @@ function Landingpage() {
         {/* Main Content Grid */}
         <div className="grid md:grid-cols-2 gap-6 p-4 max-w-5xl mx-auto">
           {/* Video Section */}
-          <div className="bg-slate-800/60 rounded-xl p-4">
+          <div className="bg-gray-900/90 rounded-xl p-4">
             <h2 className="text-xl font-bold text-white mb-3">Demo Video</h2>
             <iframe
               className="w-full aspect-video rounded-lg"
@@ -28,7 +28,7 @@ function Landingpage() {
           </div>
 
           {/* Info Section */}
-          <div className="bg-slate-800/60 rounded-xl p-4 text-white">
+          <div className="bg-gray-900/90 rounded-xl p-4 text-white">
             <h2 className="text-xl font-bold mb-3">Über unseren Service</h2>
             <p className="mb-4">
               Mit modernster KI-Technologie unterstützen wir medizinisches Personal 
