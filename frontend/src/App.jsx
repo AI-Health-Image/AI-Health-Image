@@ -15,6 +15,7 @@ import UserSettingsPage from "./pages/UserSettingsPage.jsx";
 import AnalysisPage from "./pages/Analysis-Page.jsx";
 import useJwtStore from "./components/jwtStore";
 import ArchivPage from "./pages/ArchivPage.jsx";
+import TermsPage from "./pages/TermsPage.jsx";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/imprint" element={<ImprintPage />} />
+          <Route path="/terms" element={<TermsPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/upload" element={<UploadbuttonPage />} />
           <Route path="/settings" element={<UserSettingsPage />} />
