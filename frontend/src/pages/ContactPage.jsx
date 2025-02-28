@@ -8,7 +8,7 @@ function ContactPage() {
 
   return (
     <Layout>
-      <div className="min-h-screen flex items-center justify-center bg-black">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="container mx-auto px-4 py-8">
           <div className="bg-slate-800 text-white rounded-xl p-6 mb-6 max-w-lg mx-auto">
             <div className="flex justify-center">
