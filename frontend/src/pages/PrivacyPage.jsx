@@ -2,14 +2,13 @@ import Layout from "../layout/Layout";
 
 function PrivacyPage() {
   return (
-    <div
-      className="bg-cover bg-center h-screen"
-
-    >
-      <Layout>
-        <div className="flex flex-col justify-between items-center p-2 rounded m-2">
-          <section className="bg-slate-800 text-white rounded-xl p-6 w-full max-w-4xl">
-            <h1 className="text-2xl font-bold mb-6">Datenschutzerklärung</h1>
+    <Layout>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="container mx-auto px-4 py-8">
+          <div className="bg-slate-800 text-white rounded-xl p-6 mb-6">
+            <div className="flex justify-center">
+              <h1 className="text-3xl font-bold mb-6">Datenschutzerklärung</h1>
+            </div>
             
             <div className="space-y-6">
               <div>
@@ -44,10 +43,10 @@ function PrivacyPage() {
                 </p>
               </div>
             </div>
-          </section>
+          </div>
         </div>
-      </Layout>
-    </div>
+      </div>
+    </Layout>
   );
 }
 

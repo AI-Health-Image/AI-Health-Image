@@ -32,7 +32,6 @@ function Header() {
         {(role === 'patient') && <Link to="/upload" className="hover:text-gray-300">Hochladen</Link>}
         {(role === 'patient') && <Link to="/archiv" className="hover:text-gray-300">Archiv</Link>}
         <Link to="/about" className="hover:text-gray-300">Über uns</Link>
-        <Link to="/contact" className="hover:text-gray-300">Kontakt</Link>
         {name ? (
           <div className="relative">
             <button onClick={toggleDropdown} className="hover:text-gray-300">{name}</button>
