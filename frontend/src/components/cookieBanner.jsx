@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 
-function cookies() {
+function CookiesBanner() {
 
   const acceptCookies = () => {
     Cookies.set("user-prefs", "accepted", { path: "/", expires: 7 });
@@ -51,4 +51,4 @@ function cookies() {
   );
 }
 
-export default cookies;
+export default CookiesBanner;
