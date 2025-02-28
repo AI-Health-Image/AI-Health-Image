@@ -2,16 +2,16 @@ import Layout from "../layout/Layout";
 
 function AboutPage() {
   return (
-    <div
-      className="bg-cover bg-center flex-grow flex flex-col justify-center items-center relative"
-      style={{ backgroundImage: "url('/itmedical.jpg')" }}
-    >
-      {/* Overlay mit niedrigerem z-index */}
-      <div className="absolute inset-0 bg-black/50 z-0"></div>
-      
-      <Layout>
-        <div className="flex flex-col justify-center items-center p-4 relative z-10">
-          <div className="max-w-4xl text-center bg-gray-900/90 text-white rounded-2xl p-8 shadow-2xl backdrop-blur-sm border border-white/10">
+    <Layout>
+      <div
+        className="bg-cover bg-center flex-grow flex flex-col justify-center items-center relative w-full"
+        style={{ backgroundImage: "url('/itmedical.jpg')" }}
+      >
+        {/* Overlay mit niedrigerem z-index */}
+        <div className="absolute inset-0 bg-black/50 z-0"></div>
+        
+        <div className="flex flex-col justify-center items-center p-4 relative z-10 w-full">
+          <div className="max-w-4xl text-center bg-gray-900/90 text-white rounded-2xl p-8 shadow-2xl backdrop-blur-sm border border-white/10 w-full">
             <img src="/ai_health_image_analyzer_logo.png" alt="AI-Health-Image Analyzer Logo" className="mb-6 w-auto h-64 mx-auto" />
             <p className="text-lg leading-relaxed text-gray-100 drop-shadow-md">
               Unsere Plattform ermöglicht es Nutzern, medizinische Bilder wie CT-Scans hochzuladen und diese
@@ -58,8 +58,8 @@ function AboutPage() {
             </div>
           ))}
         </section>
-      </Layout>
-    </div>
+      </div>
+    </Layout>
   );
 }
 
