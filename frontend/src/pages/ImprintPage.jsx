@@ -9,7 +9,7 @@ function ImprintPage() {
             <h1 className="text-3xl font-bold mb-6">Impressum</h1>
           </div>
           
-          <h2 className="text-xl font-bold mb-4">Angaben gemäß (DDG)</h2>
+          <h2 className="text-xl font-bold mb-4" data-testid="h2">Angaben gemäß (DDG)</h2>
           <p className="mb-4">
             Firmenname<br />
             Straße Nr.<br />
