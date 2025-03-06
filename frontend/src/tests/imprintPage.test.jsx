@@ -10,7 +10,7 @@ describe('Imprint Page', () => {
         render(<BrowserRouter><ImprintPage /></BrowserRouter>);
         const div = screen.getByTestId('div1');
         expect(div).toBeInTheDocument();
-        expect(div).toHaveClass('bg-cyan-200');
+        expect(div).toHaveClass('flex');
     });
 
     test('h2', () => {

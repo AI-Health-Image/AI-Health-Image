@@ -1,2 +1,3 @@
+npm run test
 npm run test:precommit
 npx lint-staged
