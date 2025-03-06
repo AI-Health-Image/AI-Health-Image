@@ -10,9 +10,9 @@ describe('Imprint Page', () => {
         render(<BrowserRouter><ImprintPage /></BrowserRouter>);
         const div = screen.getByTestId('div1');
         expect(div).toBeInTheDocument();
-        expect(div).toHaveClass('container');
+        expect(div).toHaveClass('flex');
     });
-    
+
     test('h2', () => {
         render(<BrowserRouter><ImprintPage /></BrowserRouter>);
         const h2 = screen.getByTestId('h2');
