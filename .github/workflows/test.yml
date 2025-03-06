@@ -27,6 +27,7 @@ jobs:
            node-version: '22'
 
         - name: Install dependencies
+          working-directory: ./frontend
           run: npm ci
 
         - name: Run unit tests
