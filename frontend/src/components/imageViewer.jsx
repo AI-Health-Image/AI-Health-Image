@@ -27,8 +27,8 @@ function ImageViewer({ imageID, directory }) {
     }
 
     return (
-        <div className='flex w-full gap-4 justify-center items-center'>
-            <img src={image} alt="Uploaded Image" className='w-full'/>
+        <div className='flex w-full gap-4 justify-center items-center' data-testid='div1'>
+            <img src={image} alt="Uploaded Image" className='w-full' data-testid='img'/>
         </div>
     );
 };
