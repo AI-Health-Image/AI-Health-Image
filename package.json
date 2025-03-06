@@ -4,6 +4,6 @@
     "vitest": "^3.0.7"
   },
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky install"
   }
 }
