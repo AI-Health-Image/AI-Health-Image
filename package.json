@@ -4,6 +4,7 @@
     "vitest": "^3.0.7"
   },
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "test:precommit": "vitest run --reporter=verbose"
   }
 }
