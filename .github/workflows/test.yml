@@ -4,6 +4,7 @@ on:
     push:
         branches:
             - main
+            - feature/test-image-viewer
     pull_request:
         branches:
             - main
