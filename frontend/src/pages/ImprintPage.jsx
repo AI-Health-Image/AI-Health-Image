@@ -1,15 +1,15 @@
-import Layout from "../layout/Layout";
+import Layout from "../layout/layout";
 
 function ImprintPage() {
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8" data-testid="div1">
         <div className="bg-slate-800 text-white rounded-xl p-6 mb-6">
           <div className="flex justify-center">
             <h1 className="text-3xl font-bold mb-6">Impressum</h1>
           </div>
           
-          <h2 className="text-xl font-bold mb-4">Angaben gemäß (DDG)</h2>
+          <h2 className="text-xl font-bold mb-4" data-testid="h2">Angaben gemäß (DDG)</h2>
           <p className="mb-4">
             Firmenname<br />
             Straße Nr.<br />
