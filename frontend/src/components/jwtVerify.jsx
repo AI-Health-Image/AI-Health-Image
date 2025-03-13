@@ -9,9 +9,6 @@ async function JwtVerify() {
     return false;
   }
 
-  //console.log(jwt);
-  //console.log(typeof jwt);
-
   const response = await fetch(import.meta.env.VITE_API_URL + "auth/verify", {
     method: "POST",
     headers: {
@@ -20,16 +17,10 @@ async function JwtVerify() {
     },
     body: JSON.stringify({ token: jwt }),
   });
-  //console.log(response);
 
   const data = await response.json();
-  //console.log(data);
 
-  if (data.verified) {
-    return true;
-  } else {
-    return false;
-  }
+  return data.verified;
 }
 
 export default JwtVerify;
