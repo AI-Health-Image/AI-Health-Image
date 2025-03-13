@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import useJwtStore from './jwtStore';
+import PropTypes from 'prop-types';
 
 function ImageViewer({ imageID, directory }) {
     const [image, setImage] = useState(null);
@@ -20,7 +21,7 @@ function ImageViewer({ imageID, directory }) {
             setImage(image);
         }
         loadImage();
-    }, []);
+    }, [imageID, directory, jwt]);
 
     if (!image) {
         return <div>Loading...</div>;
@@ -28,9 +29,13 @@ function ImageViewer({ imageID, directory }) {
 
     return (
         <div className='flex w-full gap-4 justify-center items-center'>
-            <img src={image} alt="Uploaded Image" className='w-full'/>
+            <img src={image} alt={`Analysis result for ${imageID}`} className='w-full'/>
         </div>
     );
-};
+}
 
+ImageViewer.propTypes = {
+    imageID: PropTypes.string.isRequired,
+    directory: PropTypes.string.isRequired,
+};
 export default ImageViewer;
