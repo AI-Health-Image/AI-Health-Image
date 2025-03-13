@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import Header from "../components/Layout_Coms/Header";
 import Footer from "../components/Layout_Coms/Footer";
 
@@ -12,5 +13,9 @@ function Layout({ children }) {
     </div>
   );
 }
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default Layout;
